@@ -1,0 +1,10 @@
+{
+  "name": "X-Factor",
+  "short_name": "X-Factor",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#0a0a0f",
+  "background_color": "#0a0a0f",
+  "scope": "/"
+}
