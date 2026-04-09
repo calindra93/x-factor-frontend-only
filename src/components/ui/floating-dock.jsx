@@ -1,7 +1,6 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { IconLayoutNavbarCollapse } from "@tabler/icons-react";
 import {
   AnimatePresence,
   motion,
@@ -11,13 +10,8 @@ import {
 } from "framer-motion";
 import { useRef, useState } from "react";
 
-export const FloatingDock = ({ items, desktopClassName, mobileClassName }) => {
-  return (
-    <>
-      <FloatingDockDesktop items={items} className={desktopClassName} />
-      <FloatingDockMobile items={items} className={mobileClassName} />
-    </>
-  );
+export const FloatingDock = ({ items, desktopClassName }) => {
+  return <FloatingDockDesktop items={items} className={desktopClassName} />;
 };
 
 const FloatingDockMobile = ({ items, className }) => {
@@ -70,8 +64,10 @@ const FloatingDockDesktop = ({ items, className }) => {
     <motion.div
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
+      onTouchMove={(e) => mouseX.set(e.touches[0].clientX)}
+      onTouchEnd={() => mouseX.set(Infinity)}
       className={cn(
-        "mx-auto hidden h-16 items-end gap-4 rounded-2xl bg-[#111118]/95 px-4 pb-3 md:flex",
+        "mx-auto flex h-16 items-end gap-4 rounded-2xl bg-[#111118]/95 px-4 pb-3",
         className,
       )}
     >

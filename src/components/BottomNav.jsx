@@ -50,7 +50,6 @@ export default function BottomNav({ currentPage }) {
         <FloatingDock
           items={dockItems}
           desktopClassName="w-full border border-white/[0.08]"
-          mobileClassName=""
         />
       </div>
     </nav>
