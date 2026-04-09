@@ -14,6 +14,7 @@ import { invokeFestivalAction } from '@/lib/invokeFestivalAction';
 import { formatGreenRoomClipDay, sortGreenRoomResults } from '@/components/amplifi/greenRoomPresentation';
 import { useNavigate } from 'react-router-dom';
 import { createPageUrl } from '@/components/utils';
+import './amplifiApp.css';
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -61,17 +62,17 @@ const DISTRIBUTION_OPTIONS = [
 
 function StatCard({ label, value, color = '#a855f7', suffix = '' }) {
   return (
-    <div style={{ background: 'rgba(255,255,255,.04)', border: '1px solid rgba(255,255,255,.07)', borderRadius: 12, padding: '12px 14px', textAlign: 'center' }}>
+    <div className="amp-stat-pill" style={{ textAlign: 'center' }}>
       <div style={{ fontSize: 22, fontWeight: 900, color }}>{value}{suffix}</div>
-      <div style={{ fontSize: 9, fontWeight: 700, color: 'rgba(255,255,255,.35)', textTransform: 'uppercase', letterSpacing: .8, marginTop: 3 }}>{label}</div>
+      <div className="amp-stat-label" style={{ marginTop: 3 }}>{label}</div>
     </div>
   );
 }
 
 function HeatBar({ value, color }) {
   return (
-    <div style={{ height: 6, background: 'rgba(255,255,255,.08)', borderRadius: 3, overflow: 'hidden' }}>
-      <div style={{ height: '100%', width: `${Math.min(100, value)}%`, background: color, borderRadius: 3, transition: 'width .6s ease' }} />
+    <div className="amp-axis-bar">
+      <div className="amp-axis-fill" style={{ width: `${Math.min(100, value)}%`, background: color }} />
     </div>
   );
 }
@@ -331,7 +332,7 @@ export default function FestivalGreenRoom({ instanceId, festivalName, profile, o
     <div style={{ paddingBottom: 40 }}>
 
       {/* Hero banner */}
-      <div style={{ margin: '16px 18px 0', padding: '16px', background: 'linear-gradient(135deg,rgba(168,85,247,.2),rgba(236,72,153,.12))', border: '1px solid rgba(168,85,247,.25)', borderRadius: 16 }}>
+      <div className="amp-section-card" style={{ margin: '16px 18px 0', padding: 16, background: 'linear-gradient(135deg,rgba(168,85,247,.2),rgba(236,72,153,.12))', borderColor: 'rgba(168,85,247,.25)' }}>
         <div style={{ fontSize: 10, fontWeight: 700, color: 'rgba(255,255,255,.4)', letterSpacing: 1.2, textTransform: 'uppercase', marginBottom: 4 }}>Green Room</div>
         <div style={{ fontSize: 18, fontWeight: 900, color: '#fff' }}>{festivalName || 'Festival'} Recap</div>
         <div style={{ fontSize: 12, color: 'rgba(255,255,255,.4)', marginTop: 3 }}>{totalDays} day{totalDays !== 1 ? 's' : ''} performed</div>
@@ -343,9 +344,9 @@ export default function FestivalGreenRoom({ instanceId, festivalName, profile, o
       </div>
 
       {/* Performance score cards */}
-      <div style={{ margin: '14px 18px 0' }}>
-        <div style={{ fontSize: 10, fontWeight: 700, color: 'rgba(255,255,255,.35)', letterSpacing: 1, textTransform: 'uppercase', marginBottom: 10 }}>Performance Scores</div>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 8, marginBottom: 12 }}>
+      <div className="amp-section" style={{ margin: '14px 18px 0', padding: 0 }}>
+        <div className="amp-section-label">Performance Scores</div>
+        <div className="amp-stat-grid" style={{ marginBottom: 12 }}>
           <StatCard label="Crowd Heat" value={avgHeat} color={heatColor(avgHeat)} />
           <StatCard label="Credibility" value={avgCred} color="#a855f7" />
           <StatCard label="Conversion" value={avgConv} color="#6366f1" />
@@ -528,20 +529,7 @@ export default function FestivalGreenRoom({ instanceId, festivalName, profile, o
       )}
 
       <div style={{ margin: '18px 18px 0' }}>
-        <button
-          onClick={onDismiss}
-          style={{
-            width: '100%',
-            border: '1px solid rgba(168,85,247,.25)',
-            background: 'rgba(168,85,247,.12)',
-            color: '#d8b4fe',
-            borderRadius: 12,
-            padding: '12px 14px',
-            fontSize: 12,
-            fontWeight: 800,
-            cursor: 'pointer',
-          }}
-        >
+        <button className="amp-primary-btn" onClick={onDismiss}>
           Done with recap
         </button>
       </div>

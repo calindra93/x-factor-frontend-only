@@ -5,6 +5,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { Handshake, Zap, Loader2, ChevronDown, ChevronUp } from "lucide-react";
 import { invokeFestivalAction as invokeFestivalActionRequest } from "@/lib/invokeFestivalAction";
+import './amplifiApp.css';
 
 // ── Constants ────────────────────────────────────────────────────────────────
 
